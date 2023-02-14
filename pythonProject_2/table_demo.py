@@ -2,7 +2,6 @@ from prettytable import PrettyTable
 
 myTable = PrettyTable(["Student Name", "Class", "Section", "Percentage"])
 
-# Add rows
 myTable.add_row(["Leanord", "X", "B", "91.2 %"])
 myTable.add_row(["Penny", "X", "C", "63.5 %"])
 myTable.add_row(["Howard", "X", "A", "90.23 %"])

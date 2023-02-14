@@ -1,26 +1,41 @@
 from turtle import Turtle
+import time
 MOVE_DISTANCE = 20
 UP = 90
 DOWN = 270
 LEFT = 180
 RIGHT = 0
+STARTING_POINT = [(0, 0), (MOVE_DISTANCE*-1, 0), (MOVE_DISTANCE*-2, 0)]
 
 
 class Snake:
     def __init__(self):
-        self.starting_positions = [(0, 0), (MOVE_DISTANCE*-1, 0), (MOVE_DISTANCE*-2, 0)]
+        self.starting_positions = STARTING_POINT
         self.segments = []
         self.create_snake()
         self.head = self.segments[0]
 
     def create_snake(self):
-        # create turtle segments list
-        for idx, n in enumerate(self.starting_positions):
-            segment = Turtle("square")
-            segment.color("white")
-            segment.penup()
-            segment.goto(self.starting_positions[idx])
-            self.segments.append(segment)
+        """Input the starting position to create the snake"""
+        for position in STARTING_POINT:
+            self.add_segment(position)
+
+    def add_segment(self, position):
+        """Create a segment and append to the segments list"""
+        segment = Turtle("square")
+        segment.color("white")
+        segment.penup()
+        segment.goto(self.starting_positions[-1])
+        self.segments.append(segment)
+
+    def extend_snake(self):
+        """Add a segment to the last position"""
+        self.add_segment(self.segments[-1].position())
+
+    def check_body_collision(self):
+        for seg in self.segments[1:len(self.segments)]:
+            if self.head.distance(seg) < 10:
+                return True
 
     def move(self):
         # update the position num
@@ -45,3 +60,8 @@ class Snake:
     def right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+
+
+
+

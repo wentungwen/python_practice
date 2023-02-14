@@ -1,4 +1,6 @@
 from turtle import Turtle, Screen
+ALIGN = "center"
+FONT = ("Arial", 20, "bold")
 
 
 class ScoreBoard(Turtle):
@@ -10,14 +12,20 @@ class ScoreBoard(Turtle):
         self.color("white")
         self.goto(x=0, y=250)
         self.hideturtle()
-        self.write(f"Score: 0", align="center", font=("Arial", 20, "bold"))
+        self.update_score()
 
     def update_score(self):
+        self.write(f"Score: {self.score}", align=ALIGN, font=FONT)
+
+    def increase_score(self):
         self.clear()
         self.score += 1
-        self.write(f"Score: 0", align="center", font=("Arial", 20, "bold"))
+        self.update_score()
 
-        # self.write(f"Score: {self.score}", align="center", font=("Arial", 20, "bold"))
+    def show_score(self):
+        self.clear()
+        self.goto(x=0, y=0)
+        self.write(f"The Fianl Score is: {self.score}", align=ALIGN, font=FONT)
 
 
 
