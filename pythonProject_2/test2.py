@@ -1,0 +1,6 @@
+## Exercise 3: Bonus 1
+vowels = "SAVE COSTS INCREASE SATISFACTION  (INSTANT RESPONSE,  "\
+          "AVAILABLE AT ANY PLACE AND TIME) INTERACT PROACTIVELY "\
+          "ANALYSIS (BIG  DATA) -> INDIVIDUAL  SUPPORT"
+
+print(vowels.lower())

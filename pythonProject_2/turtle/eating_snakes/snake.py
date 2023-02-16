@@ -25,7 +25,7 @@ class Snake:
         segment = Turtle("square")
         segment.color("white")
         segment.penup()
-        segment.goto(self.starting_positions[-1])
+        segment.goto(position)
         self.segments.append(segment)
 
     def extend_snake(self):
@@ -33,7 +33,7 @@ class Snake:
         self.add_segment(self.segments[-1].position())
 
     def check_body_collision(self):
-        for seg in self.segments[1:len(self.segments)]:
+        for seg in self.segments[1:]:
             if self.head.distance(seg) < 10:
                 return True
 
@@ -44,6 +44,13 @@ class Snake:
             new_y = self.segments[seg_num - 1].ycor()
             self.segments[seg_num].goto(new_x, new_y)
         self.head.forward(MOVE_DISTANCE)
+
+    def reset(self):
+        for seg in self.segments:
+            seg.goto(600, 600)
+        self.segments = []
+        self.create_snake()
+        self.head = self.segments[0]
 
     def up(self):
         if self.head.heading() != DOWN:

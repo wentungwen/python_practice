@@ -12,7 +12,6 @@ print(user_bet)
 
 for idx in range(0, 5):
     turtle_racer = Turtle(shape="turtle")
-    print(turtle_racer)
     turtle_racer.penup()
     turtle_racer.color(racer_colors[idx])
     turtle_racer.goto(x=-240, y=-230 + 90 * idx)

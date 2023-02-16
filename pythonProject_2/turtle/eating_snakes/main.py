@@ -11,7 +11,6 @@ screen.title("Snake Game")
 screen.tracer(0)
 snake = Snake()
 
-
 screen.listen()
 screen.onkey(snake.up, "Up")
 screen.onkey(snake.down, "Down")
@@ -25,7 +24,7 @@ game_is_start = True
 
 while game_is_start:
     screen.update()
-    time.sleep(0.5)
+    time.sleep(0.1)
     snake.move()
 
     # detect touching the food
@@ -37,16 +36,15 @@ while game_is_start:
 
     # detext collision to the wall
     if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
-        game_is_start = False
+        scoreboard.reset()
+        scoreboard.update_score()
+        snake.reset()
 
     # detect collision with the tail
     if snake.check_body_collision():
-        game_is_start = False
-
-scoreboard.show_score()
-
-
-
+        scoreboard.reset()
+        scoreboard.update_score()
+        snake.reset()
 
 
 
