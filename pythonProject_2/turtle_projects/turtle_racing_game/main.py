@@ -4,7 +4,7 @@ import random
 screen = Screen()
 screen.setup(500, 500)
 racer_colors = ["red", "grey", 'blue', 'pink', 'orange']
-user_bet = screen.textinput(title="BET", prompt="Which turtle will win the game?")
+user_bet = screen.textinput(title="BET", prompt="Which turtle_projects will win the game?")
 is_race_on = False
 turtle_list = []
 
