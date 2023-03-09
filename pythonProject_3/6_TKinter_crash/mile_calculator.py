@@ -6,9 +6,6 @@ window.title("It is a GUI program")
 window.minsize(width=500, height=300)
 window.config(padx=20, pady=20)
 
-# my_label = tk.Label(text="I am a Label.", font=("Times New Roman", 20))
-# my_label.grid(column=1, row=1)
-# my_label.config(text="Mile Calculator")
 
 
 def button_clicked():
