@@ -1,0 +1,36 @@
+{
+  "exercises": [
+    {
+      "tag_id": 317,
+      "user_input": "ran",
+      "duration_min": 30.02,
+      "met": 9.8,
+      "nf_calories": 245.16,
+      "photo": {
+        "highres": "https://d2xdmhkmkbyw75.cloudfront.net/exercise/317_highres.jpg",
+        "thumb": "https://d2xdmhkmkbyw75.cloudfront.net/exercise/317_thumb.jpg",
+        "is_user_uploaded": false
+      },
+      "compendium_code": 12050,
+      "name": "running",
+      "description": null,
+      "benefits": null
+    },
+    {
+      "tag_id": 841,
+      "user_input": "legs",
+      "duration_min": 20,
+      "met": 3.5,
+      "nf_calories": 58.33,
+      "photo": {
+        "highres": "https://d2xdmhkmkbyw75.cloudfront.net/exercise/841_highres.jpg",
+        "thumb": "https://d2xdmhkmkbyw75.cloudfront.net/exercise/841_thumb.jpg",
+        "is_user_uploaded": false
+      },
+      "compendium_code": 2054,
+      "name": "leg workout",
+      "description": null,
+      "benefits": null
+    }
+  ]
+}

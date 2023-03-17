@@ -1,4 +1,15 @@
-question_data = [
+import requests
+
+params = {
+    "amount": 10,
+    "type": "boolean",
+    "category": 18
+}
+res = requests.get("https://opentdb.com/api.php", params=params)
+res.raise_for_status()
+question_data = res.json()["results"]
+
+'''question_data = [
     {
         "category": "Science: Computers",
         "type": "boolean",
@@ -99,4 +110,4 @@ question_data = [
             "True"
         ]
     }
-]
+]'''

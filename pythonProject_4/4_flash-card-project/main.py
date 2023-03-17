@@ -1,7 +1,6 @@
 from tkinter import *
 import pandas
 import random
-import json
 
 BACKGROUND_COLOR = "#B1DDC6"
 FONT = "Ariel"
