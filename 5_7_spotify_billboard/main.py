@@ -5,8 +5,8 @@ from spotipy import Spotify
 from spotipy.oauth2 import SpotifyOAuth
 
 
-SPOTIPY_CLIENT_ID = "1408478479df4bd98acd08e126dbbeab"
-SPOTIPY_CLIENT_SECRET = "e7bb2cf239304e17957a65cc1af46e94"
+SPOTIPY_CLIENT_ID = "---"
+SPOTIPY_CLIENT_SECRET = "--"
 REDIRECT_URL = "http://example.com"
 SCOPE = "user-library-read playlist-modify-public"
 USERNAME = "wentung"
