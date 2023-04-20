@@ -1,4 +1,3 @@
-import datetime as dt
 from bs4 import BeautifulSoup
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
@@ -32,17 +31,5 @@ class SpotifyManager:
                        enumerate(soup.select(".lrv-u-width-100p #title-of-a-story.c-title.a-no-trucate"))]
         return song_titles
 
-    def check_date(self, input_date):
-        try:
-            now_date = str(dt.date.today())
-            dt.datetime.fromisoformat(input_date)
-        except ValueError:
-            print("Incorrect data format, should be YYYY-MM-DD")
-            return False
-        else:
-            if input_date >= now_date:
-                print("Out of date range! Try other dates.")
-                return False
-            else:
-                return True
+
 
