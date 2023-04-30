@@ -81,9 +81,7 @@ for item in result_list:
     except NoSuchElementException:
         print("No application button, skipped.")
         driver.find_element(By.CSS_SELECTOR, "button.artdeco-modal__dismiss").click()
-        print("111")
         driver.find_element(By.CSS_SELECTOR, 'button[data-control-name="discard_application_confirm_btn"]').click()
-        print("222")
         continue
 
 
