@@ -1,0 +1,37 @@
+summarize the Prospect Theory for me, include the example and other details
+
+
+Gamble 1
+You receive €1000,- for sure
+You have a 50% chance to win €2500,- and 50% chance to win nothing
+ A or B?
+Gamble 2
+There is a 100% chance of losing €1000,-
+There is a 50% chance of no loss and 50% chance of losing €2500,-
+ A or B?
+Gamble 1
+You receive €1000,- for sure
+You have a 50% chance to win €2500,- and 50% chance to win nothing
+ A or B?
+ Gamble 1
+You receive €1000,- for sure
+You have a 50% chance to win €2500,- and 50% chance to win nothing
+ A or B?
+Gamble 2
+There is a 100% chance of losing €1000,-
+There is a 50% chance of no loss and 50% chance of losing €2500,-
+ A or B?
+Gamble 2
+There is a 100% chance of losing €1000,-
+There is a 50% chance of no loss and 50% chance of losing €2500,-
+ A or B?
+People prefer to avoid a potential loss than risk a potential gain
+Prospect theory can explain these framing effects (i.e., when preferences change on the basis of superficial differences in the wording of information)
+  15
+People are risk aversive when it comes to gains (e.g., disease- prevention)
+  People are risk seeking when it comes to losses (e.g., disease- detection)
+  16
+
+Loss frame: “If you do not wear a mask, lives may be lost.”
+Prospect theory explains framing effects related to risk perceptions and outcome probabilities;
+What about other factors? (e.g., non-perceptual cognitive processes)
