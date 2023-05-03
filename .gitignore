@@ -1,2 +1,4 @@
 .idea
 var.sh
+*.pyc
+*/__pycache__
