@@ -11,7 +11,8 @@ marked_words = [n+",\n" for n in word_input]
 with open("output.txt", "w") as f:
     f.writelines(marked_words)
 
-driver = webdriver.Chrome()
+webdriver_path = "/Users/wentungwen/Documents/chromedriver"
+driver = webdriver.Chrome(executable_path=webdriver_path)
 driver.get("https://translate.google.com/")
 driver.find_element(By.CSS_SELECTOR, "button").click()
 driver.find_element(By.CSS_SELECTOR, 'textarea[aria-label="Source text"]').send_keys(marked_words)
