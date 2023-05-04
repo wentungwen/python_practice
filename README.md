@@ -32,3 +32,10 @@ conda activate py_practice
 conda deactivate
 ```
 
+- Show and remove the environment.
+```shell
+conda env list 
+conda remove --name 5_8_amazon  --all
+
+```
+
