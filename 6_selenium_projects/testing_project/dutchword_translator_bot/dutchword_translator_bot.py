@@ -4,11 +4,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-with open("original_words.txt") as f:
+with open("6_selenium_projects/testing_project/dutchword_translator_bot/original_words.txt") as f:
     word_input = f.readlines()
 marked_words = [n+",\n" for n in word_input]
 
-with open("output.txt", "w") as f:
+with open("6_selenium_projects/testing_project/dutchword_translator_bot/output.txt", "w") as f:
     f.writelines(marked_words)
 
 webdriver_path = "/Users/wentungwen/Documents/chromedriver"
