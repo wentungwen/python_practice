@@ -1,1 +1,0 @@
-export EMAIL_PASSWORD=tabomlvurbrejznc
