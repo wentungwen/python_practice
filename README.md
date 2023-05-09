@@ -11,6 +11,12 @@ pip install -r requirements.txt
 source var.sh
 python python 6_selenium_projects/testing_project/dutchword_translator_bot/dutchword_translator_bot.py
 ```
+# Run a project 7_1_flask_basics
+```shell
+source var.sh
+flask run
+```
+
 
 # Deactivate/activate environment
 It is suggested to use Anaconda managing and building the environment.

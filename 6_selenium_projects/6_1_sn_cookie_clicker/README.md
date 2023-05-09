@@ -6,7 +6,7 @@ pip install -r requirements.txt
 # RUN
 ```shell
 source var.sh
-python main.py
+python hello.py
 ``` 
 
 ```shell
