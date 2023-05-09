@@ -4,34 +4,27 @@ import random
 app = Flask(__name__)
 
 
-def make_bold(content):
-    def decorator():
-        return f"<b>{content()}</b>"
-    return decorator
-
-def make_em(content):
-    def decorator():
-        return f"<em>{content()}</em>"
-    return decorator
-
-def make_underline(content):
-    def decorator():
-        return f"<u>{content()}</u>"
-    return decorator
-
-
 @app.route('/')
-@make_bold
-@make_em
-@make_underline
-def hello_world():
-    return 'Hello, World!'
+def main_page():
+    return '<h1>Guess a number between 0 and 9. </h1><br>' \
+           '<img src="https://media.giphy.com/media/3o7aCSPqXE5C6T8tBC/giphy.gif">'
 
 
 # converter: https://flask.palletsprojects.com/en/2.3.x/quickstart/#variable-rules
-@app.route("/name/<username>/<int:num>")
-def greeting(username, num):
-    return f"name test: {username}, I'm {num} years old"
+@app.route("/<int:num>")
+def guessing_num(num):
+    selected_num = random.randint(1, 9)
+    input_num = num
+    print(f"{num}, {selected_num}")
+    if input_num > selected_num:
+        return f"<h1>You guessed {input_num}, but the number is lower.</h1> <img " \
+               f"src='https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif'>"
+    elif input_num < selected_num:
+        return f"<h1>You guessed {input_num}, but the number is higher.</h1><img " \
+               f"src='https://media.giphy.com/media/jD4DwBtqPXRXa/giphy.gif'>"
+    else:
+        return f"<h1>You guessed {input_num}, and it's correct!</h1><img " \
+               f"src='https://media.giphy.com/media/4T7e4DmcrP9du/giphy.gif'>"
 
 
 if __name__ == "__main__":
