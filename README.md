@@ -13,6 +13,7 @@ python python 6_selenium_projects/testing_project/dutchword_translator_bot/dutch
 ```
 # Run a project 7_1_flask_basics
 ```shell
+export FLASK_APP="/Users/wentungwen/Desktop/python_practice/7_flask_projects/7_1_flask_basics/hello.py"
 source var.sh
 flask run
 ```
