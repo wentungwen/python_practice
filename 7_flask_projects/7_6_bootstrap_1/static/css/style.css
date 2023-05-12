@@ -1,0 +1,33 @@
+body{
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.cus-container {
+  width: 300px;
+  border-radius: 10px;
+  margin: 1rem;
+  overflow: hidden;
+  box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.261);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.cus-container img {
+  width: 100%;
+}
+
+.cus-container h1 {
+  color: rgb(62, 62, 62);
+  width: 100%;
+  padding-left: 1rem;
+  padding-top: 1rem;
+}
+
+.cus-container p {
+  width: 100%;
+  padding: 1rem;
+}
