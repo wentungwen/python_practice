@@ -1,0 +1,18 @@
+{% extends "bootstrap/base.html" %} 
+
+{% block html_attribs %} lang="en" {% endblock %}  
+
+{% block head %}
+    {% block styles %}
+        {{ super() }}
+    {% endblock %}
+ {% endblock %}
+
+ {% block body %}
+ <div class="container">
+    <h1>Base page</h1>
+    {% block result_content %}{% endblock %}
+ </div>
+
+    
+{% endblock %}
