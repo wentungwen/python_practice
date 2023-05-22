@@ -29,16 +29,6 @@ class CafeForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-# Exercise:
-# add: Location URL, open time, closing time, coffee rating, wifi rating, power outlet rating fields
-# make coffee/wifi/power a select element with choice of 0 to 5.
-# e.g. You could use emojis ☕️/💪/✘/🔌
-# make all fields required except submit
-# use a validator to check that the URL field has a URL entered.
-# ---------------------------------------------------------------------------
-
-
-# all Flask routes below
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -49,7 +39,6 @@ def add_cafe():
     form = CafeForm()
     if request.method == "POST":
         if form.validate_on_submit():
-            # Make the form write a new row into cafe-data.csv
             cafe_name = request.form.get("cafe_name")
             cafe_location = request.form.get("cafe_location")
             open_time = request.form.get("open_time")
