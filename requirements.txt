@@ -8,4 +8,5 @@ flask-wtf
 wtforms
 flask-bootstrap
 sqlite
+flask-sqlalchemy
 
