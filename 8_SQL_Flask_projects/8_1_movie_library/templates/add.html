@@ -1,18 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Add Book</title>
-</head>
-<body>
-    <form action="" method="POST">
+
+{% extends "bootstrap/base.html" %}
+{% block html_attribs %} lang="en"{% endblock %}
+
+{% block head %}
+ <title>{% block title %} Add Book {% endblock %}</title>
+  {% block styles %}
+   {{ super() }}
+ {% endblock %}
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Add Book!</h1>
+    <form action="/add" method="POST">
         <label>Book Name</label>
-        <input type="text">
+        <input type="text" name="title">
         <label>Book Author</label>
-        <input type="text">
+        <input type="text" name="author">
         <label>Rating</label>
-        <input type="text">
+        <input type="text" name="rating">
         <button type="submit">Add Book</button>
     </form>
-</body>
-</html>
+    <a href="{{url_for('home')}}"> Back to Home</a>
+</div>
+{% endblock %}

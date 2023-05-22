@@ -7,11 +7,5 @@ flask
 flask-wtf
 wtforms
 flask-bootstrap
-click
-dominate
-itsdangerous
-MarkupSafe
-visitor
-Werkzeug
-
+sqlite
 
