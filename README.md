@@ -11,9 +11,9 @@ pip install -r requirements.txt
 source var.sh
 python python 6_selenium_projects/testing_project/dutchword_translator_bot/dutchword_translator_bot.py
 ```
-# Run a project 7_1_flask_basics
+# Run a project 7_9_WTForm
 ```shell
-export FLASK_APP="/Users/wentungwen/Desktop/python_practice/7_flask_projects/7_1_flask_basics/hello.py"
+export FLASK_APP="/Users/wentungwen/Desktop/python_practice/7_flask_projects/7_9_WTForm/main.py"
 source var.sh
 flask run
 ```

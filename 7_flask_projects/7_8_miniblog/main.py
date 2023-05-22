@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import requests
 
 app = Flask(__name__)
@@ -17,9 +17,22 @@ def home():
                            posts=posts)
 
 
-@app.route('/contact_receive', methods=["POST"])
+@app.route('/contact', methods=["POST"])
 def receive_data():
-    print(123)
+    title="Successfully!"
+    bg_url = "../static/assets/img/home-bg.jpg"
+    if request.method == "POST":
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+        return render_template("contact_receive.html", 
+                               name=name, 
+                               email=email, 
+                               message=message, 
+                               title=title,
+                               bg_url=bg_url
+                               )
+
 
 
 @app.route('/about')
