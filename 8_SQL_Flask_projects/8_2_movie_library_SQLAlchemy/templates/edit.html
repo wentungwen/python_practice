@@ -1,0 +1,26 @@
+{% extends "bootstrap/base.html" %}
+{% block html_attribs %} lang="en"{% endblock %}
+
+{% block head %}
+ <title>{% block title %} My movie site editor{% endblock %}</title>
+  {% block styles %}
+   {{ super() }}
+ {% endblock %}
+{% endblock %}
+
+{% block body %}
+   <div class="container">
+      <h1>Let's edit the movie's rating!!</h1>
+      <ul>
+         <li>Book name: {{ book.title }}</li>
+         <li>Book author: {{ book.author }}</li>
+         <li>Book rating (original): {{ book.rating }}</li>
+      </ul>
+      <form action="{{ url_for('edit', book_id=book.id) }}" method="POST">
+         <label for="rating">Your new rating:</label>
+         <input id="rating" type="text" name="rating" >
+         <button type="submit">change</button>
+     </form>
+      <a href="{{url_for('home')}}"> Back to home</a>
+   </div>
+{% endblock %}
