@@ -12,5 +12,11 @@
 {% block content %}
 <div class="content">
     <h1 class="heading">Add a Movie</h1>
+    <form action="/add" method="post">
+      <label id="movie-title" for="movie-title">Type your movie here:</label>
+      <input type="text" name="movie-title">
+      <button type="submit">Search for movie</button>
+    </form>
+    
 </div>
 {% endblock %}
