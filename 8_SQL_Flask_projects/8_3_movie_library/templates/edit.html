@@ -8,11 +8,18 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 {% endblock %}
 
-{% block title %}Edit Movies{% endblock %}
+{% block title %}{{movie.title}} editing page{% endblock %}
 
 {% block content %}
 <div class="content">
-  <h1 class="heading">Movie Title</h1>
+  <h1 class="heading">{{movie.title}}</h1>
     <p class="description">Edit Movie Rating</p>
+
+    <form action="{{ url_for('edit', movie_id=movie.id)}}" method="POST">
+      {{ form.csrf_token }}
+      {{ form.rating.label }}: {{form.rating(size=10) }} 
+      {{ form.review.label }}: {{form.review(size=30) }} 
+      {{ form.submit }}
+    </form>
   </div>
-{% endblock %}
+{% endblock %}   

@@ -17,6 +17,12 @@ export FLASK_APP="/Users/wentungwen/Desktop/python_practice/7_flask_projects/7_9
 source var.sh
 flask run
 ```
+# Run a project 8-3 movie_library
+```shell
+export FLASK_APP="/Users/wentungwen/Desktop/python_practice/8_SQL_Flask_projects/8_3_movie_library/main.py"
+source var.sh
+flask run --port=5001
+```
 
 
 # Deactivate/activate environment
