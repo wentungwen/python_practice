@@ -30,6 +30,3 @@ class SpotifyManager:
                        for idx, title in
                        enumerate(soup.select(".lrv-u-width-100p #title-of-a-story.c-title.a-no-trucate"))]
         return song_titles
-
-
-
