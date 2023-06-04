@@ -9,4 +9,4 @@ wtforms
 flask-bootstrap
 sqlite
 flask-sqlalchemy
-
+flask-restful
