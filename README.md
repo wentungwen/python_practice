@@ -6,22 +6,30 @@
 pip install -r requirements.txt
 ```
 
-# Run a project 6_1
+# Run a project 5_7
 ```shell
+cd /Users/wentungwen/Desktop/python_practice/5_requests_projects/5_7_spotify_billboard/
 source var.sh
-python python 6_selenium_projects/testing_project/dutchword_translator_bot/dutchword_translator_bot.py
+python main.py
 ```
 # Run a project 7_9_WTForm
 ```shell
 export FLASK_APP="/Users/wentungwen/Desktop/python_practice/7_flask_projects/7_9_WTForm/main.py"
 source var.sh
-flask run
+flask run --reload
 ```
 # Run a project 8-3 movie_library
 ```shell
 export FLASK_APP="/Users/wentungwen/Desktop/python_practice/8_SQL_Flask_projects/8_3_movie_library/main.py"
 source var.sh
-flask run --port=5001
+flask run --port=5001 --reload
+```
+
+# Run a project rest_api main
+```shell
+export FLASK_APP="/Users/wentungwen/Desktop/python_practice/8_SQL_Flask_projects/8_6_rest_api_CRUD_basic/main.py"
+source var.sh
+flask run --port=5000 --reload
 ```
 
 
