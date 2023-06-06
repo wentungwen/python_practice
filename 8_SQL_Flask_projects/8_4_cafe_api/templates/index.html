@@ -5,6 +5,87 @@
     <title>Cafe&Wifi API</title>
 </head>
 <body>
-    <h1>Welcome to the Cafe & Wifi API</h1>
+<h1>Welcome to the Cafe & Wifi API</h1>
+<hr>
+
+
+<h2>Generate a Random Cafe</h2>
+<form action="/random" method="POST">
+    <input type="number" name="random-num" id="random-num">
+    <input type="submit" value="Random Cafe">
+</form>
+
+
+<h2>Search a Specific Cafe</h2>
+<form action="/search" method="POST">
+    <label for="search-name">Cafe Name:</label>
+    <input type="text" id="search-name" name="search-name" required><br>
+</form>
+
+<h2>Create New Cafe</h2>
+    <form action="/add_cafe" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br>
+
+        <label for="map_url">Map URL:</label>
+        <input type="text" id="map_url" name="map_url" required><br>
+
+        <label for="img_url">Image URL:</label>
+        <input type="text" id="img_url" name="img_url" ><br>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br>
+
+        <label for="seats">Seats:</label>
+        <input type="text" id="seats" name="seats" required><br>
+
+        <label for="has_toilet">Has Toilet:</label>
+        <input type="checkbox" id="has_toilet" name="has_toilet"><br>
+
+        <label for="has_wifi">Has WiFi:</label>
+        <input type="checkbox" id="has_wifi" name="has_wifi"><br>
+
+        <label for="has_sockets">Has Sockets:</label>
+        <input type="checkbox" id="has_sockets" name="has_sockets"><br>
+
+        <label for="can_take_calls">Can Take Calls:</label>
+        <input type="checkbox" id="can_take_calls" name="can_take_calls"><br>
+
+        <label for="coffee_price">Coffee Price:</label>
+        <input type="text" id="coffee_price" name="coffee_price"><br>
+
+        <input type="submit" value="Create Cafe">
+    </form>
+
+<h2>Update an Existing Cafe Price</h2>
+<form action="/update_price" method="POST">
+    <label for="update-cafe">Choose the cafe</label>
+    <select name="update-cafe" id="update-cafe">
+        {% for cafe in cafes %}
+        <option value="{{ cafe.id }}">{{ cafe.name }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="update-price">Update price</label>
+    <input type="text" name="update-price" id="update-price">
+    <!--    important to add this line!!  -->
+    <input type="hidden" name="_method" value="PATCH">
+    <input type="submit" value="Update Cafe">
+</form>
+
+ <h2>Delete an Existing Cafe</h2>
+<form action="/report-closed" method="POST">
+    <label for="delete-cafe">Choose the cafe you want to remove:</label>
+    <select name="delete-cafe" id="delete-cafe">
+        {% for cafe in cafes %}
+        <option value="{{ cafe.id }}">{{ cafe.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Cafe">
+</form>
+
+
+
 </body>
 </html>
