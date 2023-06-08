@@ -10,3 +10,5 @@ flask-bootstrap
 sqlite
 flask-sqlalchemy
 flask-restful
+flask-ckeditor
+

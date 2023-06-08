@@ -1,18 +1,19 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditor, CKEditorField
-
+from datetime import datetime
 
 ## Delete this code:
 # import requests
 # posts = requests.get("https://api.npoint.io/43644ec4f0013682fc0d").json()
 
+
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = 'wtformisthebest'
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
@@ -20,6 +21,7 @@ Bootstrap(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 
 ##CONFIGURE TABLE
 class BlogPost(db.Model):
@@ -38,22 +40,79 @@ class CreatePostForm(FlaskForm):
     subtitle = StringField("Subtitle", validators=[DataRequired()])
     author = StringField("Your Name", validators=[DataRequired()])
     img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
-    body = StringField("Blog Content", validators=[DataRequired()])
+    body = CKEditorField("Blog Content", validators=[DataRequired()])
     submit = SubmitField("Submit Post")
 
 
 @app.route('/')
 def get_all_posts():
+    posts = BlogPost.query.all()
     return render_template("index.html", all_posts=posts)
 
 
-@app.route("/post/<int:index>")
-def show_post(index):
-    requested_post = None
+@app.route("/post/<int:post_id>")
+def show_post(post_id):
+    requested_post = BlogPost.query.get(post_id)
+    posts = BlogPost.query.all()
     for blog_post in posts:
-        if blog_post["id"] == index:
+        if blog_post.id == post_id:
             requested_post = blog_post
     return render_template("post.html", post=requested_post)
+
+
+@app.route("/create-post", methods=["POST", "GET"])
+def create_post():
+    form = CreatePostForm()  # Instantiate the form
+    if request.method == 'POST' and form.validate_on_submit():
+        formatted_date = datetime.now().strftime("%B %d, %Y")
+        title = request.form.get("title")
+        subtitle = request.form.get("subtitle")
+        author = request.form.get("author")
+        img_url = request.form.get("img_url")
+        body = request.form.get("body")
+        print(body)
+        new_post = BlogPost(
+            title=title,
+            subtitle=subtitle,
+            author=author,
+            img_url=img_url,
+            body=body,
+            date=formatted_date
+        )
+        print(new_post)
+        db.session.add(new_post)
+        db.session.commit()
+        return redirect(url_for('get_all_posts'))
+    return render_template("make-post.html", form=form)
+
+
+@app.route("/edit-post/<int:post_id>", methods=['POST', 'GET'])
+def edit_post(post_id):
+    post = BlogPost.query.get(post_id)
+    edit_form = CreatePostForm(
+        title=post.title,
+        subtitle=post.subtitle,
+        img_url=post.img_url,
+        author=post.author,
+        body=post.body,
+    )
+    if request.method == 'POST' and edit_form.validate_on_submit():
+        post.title = edit_form.title.data
+        post.subtitle = edit_form.subtitle.data
+        post.author = edit_form.author.data
+        post.img_url = edit_form.img_url.data
+        post.body = edit_form.body.data
+        db.session.commit()
+        return redirect(url_for("show_post", post_id=post_id))
+    return render_template("make-post.html", form=edit_form, post_id=post_id)
+
+
+@app.route("/delete-post/<int:post_id>")
+def delete_post(post_id):
+    post = BlogPost.query.get(post_id)
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for('get_all_posts'))
 
 
 @app.route("/about")
@@ -65,5 +124,8 @@ def about():
 def contact():
     return render_template("contact.html")
 
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
+
+# https://miro.medium.com/v2/resize:fit:4800/format:webp/1*6bGA-Xo8CVNwCHCfmpRhpQ.png
