@@ -11,4 +11,5 @@ sqlite
 flask-sqlalchemy
 flask-restful
 flask-ckeditor
-
+flask-login
+werkzeug
