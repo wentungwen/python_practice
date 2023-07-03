@@ -1,22 +1,25 @@
-import requests
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-# Define the API endpoint for protein search
-url = "https://www.ebi.ac.uk/proteins/api/proteins"
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
 
-# Set the search parameters
-params = {
-    "offset": 0,
-    "size": 10,
-    "query": "apple",
-}
 
-# Make the API request
-response = requests.get(url, params=params)
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
 
-# Handle the API response
-if response.status_code == 200:
-    data = response.json()
-    # Process the protein data as needed
-    print(data)
-else:
-    print("Error occurred:", response.status_code)
+
+class User2(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+
+
+# Create the tables
+with app.app_context():
+    db.create_all()
+
