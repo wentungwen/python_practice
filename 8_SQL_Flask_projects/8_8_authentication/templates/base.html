@@ -13,26 +13,32 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Flask Authentication</a>
+  {% if user %}
+    <p>Welcome, {{ user.name }}!</p>
+  {% else %}
+    <p>Please log in.</p>
+  {% endif %}
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" href="{{ url_for('home') }}">Home</a>
       </li>
-        {% if not logged_in: %}
-      <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-      </li>
+      {% if not user %}
         <li class="nav-item">
-        <a class="nav-link" href="{{ url_for('register') }}">Register</a>
-      </li>
-        {% endif %}
-<li class="nav-item">
-        <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
-      </li>
+          <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('register') }}">Register</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('logout') }}">Log Out</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ url_for('delete') }}" class="nav-link">Delete User</a>
+        </li>
+      {% endif %}
     </ul>
-
-
   </div>
 </nav>
        {% block content %}
