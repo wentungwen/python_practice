@@ -2,14 +2,14 @@
 
   <!-- Page Header -->
   <header class="masthead" 
-  style="background-image: url('{{ url_for('static', filename='img/register-bg.jpg')}}')">
+  style="background-image: url('{{ url_for('static', filename='img/login-bg.jpg')}}')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>Register</h1>
-            <span class="subheading">Let's sign up and get in touch!</span>
+            <h1>Login</h1>
+            <span class="subheading">Login to post articles.</span>
           </div>
         </div>
       </div>
@@ -20,15 +20,9 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <form action="{{ url_for('register') }}" method="post">
+        <form action="{{ url_for('login') }}" method="post">
           
           {{ form.csrf_token }}
-
-          <div class="control-group">
-            <div class="form-group  controls">
-              {{ form.name.label }} <br> {{form.name(size=30) }} 
-            </div>
-          </div>
           <div class="control-group">
             <div class="form-group  controls">
               {{ form.email.label }} <br> {{form.email(size=30) }} 
