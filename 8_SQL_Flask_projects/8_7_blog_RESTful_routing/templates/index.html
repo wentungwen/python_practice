@@ -1,59 +1,85 @@
 {% include "header.html" %}
- 
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1470092306007-055b6797ca72?ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="site-heading">
-            <h1>{{ current_user }} Blog</h1>
-            <span class="subheading">A collection of Angela's random musings.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <!-- Main Content -->
+<!-- Page Header -->
+<header
+  class="masthead"
+  style="
+    background-image: url('https://images.unsplash.com/photo-1470092306007-055b6797ca72?ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80');
+  "
+>
+  <div class="overlay"></div>
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        {% for post in all_posts %}
-        <div class="post-preview">
-          <a href="{{ url_for('show_post', post_id=post.id) }}">
-            <h2 class="post-title">
-              {{post.title}}
-            </h2>
-            <h3 class="post-subtitle">
-              {{post.subtitle}}
-            </h3>
-          </a>
-          <p class="post-meta">Posted by
-            <a href="#">{{post.author}}</a>
-            on {{post.date}}</p>
-          <br>
-         <button class="btn btn-secondary">
-  <a class="text-light" href="{{ url_for('delete_post', post_id=post.id) }}">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-    </svg>
-    Delete Post
-  </a>
-</button>
-          
-        </div>
-        <hr>
-        {% endfor %}
-
-
-        <!-- New Post -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="{{ url_for('create_post')}}">Create New Post</a>
+        <div class="site-heading">
+          {% if current_user %}
+          <h1>{{ current_user.name }}'s' Blog</h1>
+          {% else %}
+          <h1>A boring blog</h1>
+          {% endif %}
+          <span class="subheading"
+            >It is a boring blog project but I'm trying to make it better.</span
+          >
         </div>
       </div>
     </div>
   </div>
-  <hr>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      {% for post in all_posts %}
+      <div class="post-preview">
+        <a href="{{ url_for('show_post', post_id=post.id) }}">
+          <h2 class="post-title">{{post.title}}</h2>
+          <h3 class="post-subtitle">{{post.subtitle}}</h3>
+        </a>
+        <p class="post-meta">
+          Posted by
+          <a href="#">{{post.author}}</a>
+          on {{post.date}}
+        </p>
+        <br />
+        {% if current_user.id==1 %}
+        <button class="btn btn-secondary">
+          <a
+            class="text-light"
+            href="{{ url_for('delete_post', post_id=post.id) }}"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-x-circle-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"
+              />
+            </svg>
+            Delete Post
+          </a>
+        </button>
+        {% endif %}
+      </div>
+      <hr />
+      {% endfor %}
+
+      {% if current_user.id==1 %}
+      <div class="clearfix">
+        <a
+          class="btn btn-primary float-right"
+          href="{{ url_for('create_post')}}"
+          >Create New Post</a
+        >
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<hr />
 
 {% include "footer.html" %}

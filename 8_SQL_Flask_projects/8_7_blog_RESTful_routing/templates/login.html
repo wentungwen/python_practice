@@ -24,8 +24,9 @@
           
           {{ form.csrf_token }}
           <div class="control-group">
-            <div class="form-group  controls">
-              {{ form.email.label }} <br> {{form.email(size=30) }} 
+            <div class="form-group controls">
+              {{ form.email.label }} {{ form.email() }}
+              <p class="help-block text-danger"></p>
             </div>
           </div>
 
