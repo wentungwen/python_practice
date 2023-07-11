@@ -1,8 +1,11 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, g
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.orm import relationship
+from sqlalchemy import Column, ForeignKey, Integer, String,Text
 from flask_wtf import FlaskForm
 from flask_login import current_user, login_user, logout_user, LoginManager, UserMixin
+from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, URL
@@ -24,22 +27,27 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
-##CONFIGURE TABLE
-class BlogPost(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(250), unique=True, nullable=False)
-    subtitle = db.Column(db.String(250), nullable=False)
-    date = db.Column(db.String(250), nullable=False)
-    body = db.Column(db.Text, nullable=False)
-    author = db.Column(db.String(250), nullable=False)
-    img_url = db.Column(db.String(250), nullable=False)
-
 class User(db.Model, UserMixin):
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
-    name = db.Column(db.String(100))
+    id = Column(Integer, primary_key=True)
+    email = Column(String(100), unique=True)
+    password = Column(String(100))
+    name = Column(String(100))
+    posts = relationship("BlogPost", back_populates="user")
+
+
+##CONFIGURE TABLE
+class BlogPost(db.Model):
+    id = Column(Integer, primary_key=True)
+    title = Column(String(250), unique=True, nullable=False)
+    subtitle = Column(String(250), nullable=False)
+    date = Column(String(250), nullable=False)
+    body = Column(Text, nullable=False)
+    author = Column(String(250), nullable=False)
+    img_url = Column(String(250), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship("User", back_populates="posts")
+
 
 
 ##WTForm
@@ -50,6 +58,16 @@ class CreatePostForm(FlaskForm):
     img_url = StringField("Blog Image URL", validators=[DataRequired(), URL()])
     body = CKEditorField("Blog Content", validators=[DataRequired()])
     submit = SubmitField("Submit Post")
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if current_user.is_authenticated:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login'))
+    return decorated_function
 
 @app.context_processor
 def inject_current_user():
@@ -102,8 +120,8 @@ def login():
             login_user(user)
             return redirect(url_for('get_all_posts'))
         else:
-            msg = 'Wrong email or password.'
-            return render_template("login.html", msg=msg, form=form)
+            error = 'Wrong email or password.'
+            return render_template("login.html", error=error, form=form)
     return render_template("login.html", msg=msg, form=form)
 
 
@@ -124,6 +142,7 @@ def show_post(post_id):
 
 
 @app.route("/create-post", methods=["POST", "GET"])
+@login_required
 def create_post():
     form = CreatePostForm()  # Instantiate the form
     if request.method == 'POST' and form.validate_on_submit():
@@ -133,16 +152,15 @@ def create_post():
         author = request.form.get("author")
         img_url = request.form.get("img_url")
         body = request.form.get("body")
-        print(body)
         new_post = BlogPost(
             title=title,
             subtitle=subtitle,
             author=author,
             img_url=img_url,
             body=body,
-            date=formatted_date
+            date=formatted_date,
+            user_id=current_user.id
         )
-        print(new_post)
         db.session.add(new_post)
         db.session.commit()
         return redirect(url_for('get_all_posts'))
@@ -150,6 +168,7 @@ def create_post():
 
 
 @app.route("/edit-post/<int:post_id>", methods=['POST', 'GET'])
+@login_required
 def edit_post(post_id):
     post = BlogPost.query.get(post_id)
     edit_form = CreatePostForm(
@@ -171,6 +190,7 @@ def edit_post(post_id):
 
 
 @app.route("/delete-post/<int:post_id>")
+@login_required
 def delete_post(post_id):
     post = BlogPost.query.get(post_id)
     db.session.delete(post)
@@ -188,7 +208,9 @@ def contact():
     return render_template("contact.html")
 
 
+
 if __name__ == "__main__":
+
     app.run(debug=True, host='0.0.0.0', port=5000)
 
 # https://miro.medium.com/v2/resize:fit:4800/format:webp/1*6bGA-Xo8CVNwCHCfmpRhpQ.png
