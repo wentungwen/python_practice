@@ -33,9 +33,12 @@
         {% else %}
         {{ url_for('create_post') }}
         {% endif %}">
-
           {{ form.csrf_token }}
-          <br />
+          <br /> 
+          <div class="form-group">
+            Author: <br />
+            {{ current_user.name }}<br />
+          </div>
           <div class="form-group">
             {{ form.title.label }}<br />
             {{ form.title(class='form-control') }}<br />
@@ -43,10 +46,6 @@
           <div class="form-group">
             {{ form.subtitle.label }}<br />
             {{ form.subtitle(class='form-control') }}<br />
-          </div>
-          <div class="form-group">
-            {{ form.author.label }}<br />
-            {{ form.author(class='form-control') }}<br />
           </div>
           <div class="form-group">
             {{ form.img_url.label }}<br />
@@ -59,7 +58,7 @@
           <div class="form-group">
             {{ form.submit(class='btn btn-primary') }}
           </div>
-          <input type="hidden" name="post_id" value="{{ post_id }}">
+          <!-- <input type="hidden" name="post_id" value="{{ post_id }}"> -->
 
         </form>
       </div>

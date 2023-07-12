@@ -38,7 +38,7 @@
         </a>
         <p class="post-meta">
           Posted by
-          <a href="#">{{post.author}}</a>
+          <a href="#">{{post.author.name}}</a>
           on {{post.date}}
         </p>
         <br />
@@ -66,9 +66,7 @@
         {% endif %}
       </div>
       <hr />
-      {% endfor %}
-
-      {% if current_user.id==1 %}
+      {% endfor %} {% if current_user.id==1 %}
       <div class="clearfix">
         <a
           class="btn btn-primary float-right"
